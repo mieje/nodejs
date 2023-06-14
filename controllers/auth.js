@@ -1,3 +1,4 @@
+import mongoose  from 'mongoose';
 
 export const register = (req,res)=>{
 
