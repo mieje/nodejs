@@ -1,10 +1,6 @@
-import mongoose  from 'mongoose';
+const mongoose  = require('mongoose');
 
 const userSchema = new mongoose.Schema({
-    id:{
-        type: String,
-        unique
-    },
     name:{
         type:String,
     },

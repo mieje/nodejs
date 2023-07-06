@@ -1,27 +1,31 @@
-import  express  from "express";
-import mongoose  from 'mongoose';
-import authRoutes from "./routes/auth";
-import userRoutes from "./routes/users";
-import postRoutes from "./routes/posts";
-import likeRoutes from "./routes/likes";
-import commentRoutes from "./routes/comments";
+const  express  = require("express") ;
+const mongoose  = require('mongoose');
+const cors = require('cors');
+const cookieParser = require('cookie-parser');
+const authRoutes = require("./routes/auth");
+const userRoutes = require("./routes/users");
+const postRoutes = require("./routes/posts");
+const likeRoutes = require("./routes/likes");
+const commentRoutes = require("./routes/comments");
 
-const app = express()
+const app = express();
 
 //middlewares
+app.use(cors())
+app.use(cookieParser())
 app.use(express.json())
 
-//connect to mongodb
+// connect to mongodb
 main().catch(err => console.log(err));
 async function main() {
-  await mongoose.connect('mongodb://127.0.0.1:27017/test');
+  await mongoose.connect('mongodb://127.0.0.1:27017/social-db');
 }
 
 app.use("/api/auth",authRoutes);
-app.use("/api/users",userRoutes);
-app.use("/api/posts",postRoutes);
-app.use("/api/comments",commentRoutes);
-app.use("/api/likes",likeRoutes);
+// app.use("/api/users",userRoutes);
+// app.use("/api/posts",postRoutes);
+// app.use("/api/comments",commentRoutes);
+// app.use("/api/likes",likeRoutes);
 
 
 app.listen(8800,()=>{
